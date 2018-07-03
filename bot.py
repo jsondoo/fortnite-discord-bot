@@ -19,9 +19,9 @@ async def on_message(message):
     await client.send_message(message.channel, 'pong')
 
   if message.content.startswith(COMMAND_PREFIX + 'stats'):
-    words = message.content.split(' ')
+    words = message.content.split(' ', 2)
 
-    if len(words) < 3 or len(words) > 3:
+    if len(words) < 3:
       await client.send_message(message.channel, 'Usage: ' + COMMAND_PREFIX + 'stats <pc,xbl,psn> <nickname>')
     elif words[1] not in ('pc','xbl','psn'):
       await client.send_message(message.channel, 'Usage: ' + COMMAND_PREFIX + 'stats <pc,xbl,psn> <nickname>')
