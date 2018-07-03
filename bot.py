@@ -35,7 +35,9 @@ async def on_message(message):
         kills = res[3]['value']
         kd = res[4]['value']
 
-        embed = discord.Embed(title="Lifetime Stats", description=words[2], color=0x00ff00)
+        embed = discord.Embed(title="Lifetime Stats for " + words[2], color=0x00ff00)
+        embed.set_image(url='https://media1.tenor.com/images/c25706e4bef5466784285d18c459679e/tenor.gif?itemid=11809160')
+
         embed.add_field(name="Matches Played", value=matches_played, inline=False)
         embed.add_field(name="Wins", value=wins, inline=False)
         embed.add_field(name="Win percent", value=win_percent, inline=False)
@@ -51,6 +53,7 @@ def fortnite_tracker_api(platform, nickname):
 
   if req.status_code == 200:
     try:
+      print(req.json())
       lifetime_stats = req.json()['lifeTimeStats']
       return lifetime_stats[7:]
     except KeyError:
