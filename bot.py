@@ -36,13 +36,12 @@ async def on_message(message):
         kd = res[4]['value']
 
         embed = discord.Embed(title="Lifetime Stats for " + words[2], color=0x00ff00)
-        embed.set_image(url='https://media1.tenor.com/images/c25706e4bef5466784285d18c459679e/tenor.gif?itemid=11809160')
 
-        embed.add_field(name="Matches Played", value=matches_played, inline=False)
-        embed.add_field(name="Wins", value=wins, inline=False)
-        embed.add_field(name="Win percent", value=win_percent, inline=False)
-        embed.add_field(name="Kills", value=kills, inline=False)
-        embed.add_field(name="K/D", value=kd, inline=False)
+        embed.add_field(name="Matches Played", value=matches_played + '\n', inline=False)
+        embed.add_field(name="Wins", value=wins + '\n', inline=False)
+        embed.add_field(name="Win percent", value=win_percent + '\n', inline=False)
+        embed.add_field(name="Kills", value=kills + '\n', inline=False)
+        embed.add_field(name="K/D", value=kd + '\n', inline=False)
         await client.send_message(message.channel, embed=embed)
       else:
         await client.send_message(message.channel, 'Failed to get data')
