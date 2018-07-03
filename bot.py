@@ -5,13 +5,13 @@ import os
 
 BOT_TOKEN = os.environ['BOT_TOKEN']
 FORTNITE_API_TOKEN = os.environ['FORTNITE_API_TOKEN']
-COMMAND_PREFIX = '!'
+COMMAND_PREFIX = '?'
 
 client = discord.Client()
 
 @client.event
 async def on_ready():
-    print('Logged in as '  + client.user.name)
+  await client.change_presence(game=discord.Game(name='?'))
 
 @client.event
 async def on_message(message):

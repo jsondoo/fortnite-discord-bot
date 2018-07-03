@@ -33,7 +33,7 @@ Type `!stats <platform> <nickname>` to retrieve stats about user with nickname o
 
 The command prefix can be customzied by changing the value of `COMMAND_PREFIX` in `bot.py`.
 
-## Hosting the bot externally
+## Hosting the bot on Heroku
 
 The bot can be hosted for free by running the script on Heroku.
 
