@@ -5,6 +5,7 @@ import config
 
 BOT_TOKEN = config.BOT_TOKEN
 FORTNITE_API_TOKEN = config.FORTNITE_API_TOKEN
+COMMAND_PREFIX = '!'
 
 client = discord.Client()
 
@@ -14,13 +15,16 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-  if message.content.startswith('!stats'):
+  if message.content.startswith(COMMAND_PREFIX + 'ping'):
+    await client.send_message(message.channel, 'pong')
+
+  if message.content.startswith(COMMAND_PREFIX + 'stats'):
     words = message.content.split(' ')
 
     if len(words) < 3 or len(words) > 3:
-      await client.send_message(message.channel, 'Usage: !stats <pc,xbl,psn> <nickname>')
+      await client.send_message(message.channel, 'Usage: ' + COMMAND_PREFIX + 'stats <pc,xbl,psn> <nickname>')
     elif words[1] not in ('pc','xbl','psn'):
-      await client.send_message(message.channel, 'Usage: !stats <pc,xbl,psn> <nickname>')
+      await client.send_message(message.channel, 'Usage: ' + COMMAND_PREFIX + 'stats <pc,xbl,psn> <nickname>')
     else:
       res = fortnite_tracker_api(words[1],words[2])
       if res:
