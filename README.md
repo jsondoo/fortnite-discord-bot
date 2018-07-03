@@ -15,9 +15,9 @@ pip install requests
 
 In `bot.py`, replace the values of `BOT_TOKEN` and `FORTNITE_API_TOKEN` with your own API keys.
 
-Discord Developers: [https://discordapp.com/developers/docs/intro]()
+Discord Developers: [https://discordapp.com/developers/docs/intro](https://discordapp.com/developers/docs/intro)
 
-Fortnite Tracker API: [https://fortnitetracker.com/site-api]()
+Fortnite Tracker API: [https://fortnitetracker.com/site-api](https://fortnitetracker.com/site-api)
 
 Run your bot with:
 
