@@ -35,7 +35,36 @@ The command prefix can be customzied by changing the value of `COMMAND_PREFIX` i
 
 ## Hosting the bot externally
 
-Add additional notes about how to deploy this on a live system
+The bot can be hosted for free by running the script on Heroku.
+
+1) Install git and Heroku CLI.
+
+2) Create `requirements.txt` by typing `pip freeze > requirements.txt`. This lets Heroku detect that you are running a Python app and have it install the required libraries.
+
+3) Create a Procfile with `worker: python bot.py`.
+
+4) Create a git repository with `git init`.
+
+5) Create a heroku app and set config vars:
+
+```
+heroku create
+heroku config:set BOT_TOKEN=<insert token here>
+heroku config:set FORTNITE_API_TOKEN=<insert token here>
+```
+
+6) Push to heroku:
+
+```
+git add -A
+git commit -m "Initial commit"
+git push heroku master
+```
+
+6) Start the worker with `heroku ps:scale worker=1`.
+
+7) Check logs with `heroku logs --tail`.
+
 
 ## License
 
