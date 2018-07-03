@@ -27,8 +27,21 @@ async def on_message(message):
       await client.send_message(message.channel, 'Usage: ' + COMMAND_PREFIX + 'stats <pc,xbl,psn> <nickname>')
     else:
       res = fortnite_tracker_api(words[1],words[2])
+
       if res:
-        await client.send_message(message.channel, res)
+        matches_played = res[0]['value']
+        wins = res[1]['value']
+        win_percent = res[2]['value']
+        kills = res[3]['value']
+        kd = res[4]['value']
+
+        embed = discord.Embed(title="Lifetime Stats", description=words[2], color=0x00ff00)
+        embed.add_field(name="Matches Played", value=matches_played, inline=False)
+        embed.add_field(name="Wins", value=wins, inline=False)
+        embed.add_field(name="Win percent", value=win_percent, inline=False)
+        embed.add_field(name="Kills", value=kills, inline=False)
+        embed.add_field(name="K/D", value=kd, inline=False)
+        await client.send_message(message.channel, embed=embed)
       else:
         await client.send_message(message.channel, 'Failed to get data')
 
