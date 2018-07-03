@@ -48,6 +48,7 @@ The bot can be hosted for free by running the script on Heroku.
 5) Create a heroku app and set config vars:
 
 ```
+heroku login
 heroku create
 heroku config:set BOT_TOKEN=<insert token here>
 heroku config:set FORTNITE_API_TOKEN=<insert token here>
@@ -56,6 +57,7 @@ heroku config:set FORTNITE_API_TOKEN=<insert token here>
 6) Push to heroku:
 
 ```
+git init
 git add -A
 git commit -m "Initial commit"
 git push heroku master
