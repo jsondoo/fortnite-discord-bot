@@ -1,10 +1,10 @@
 import discord
 import asyncio
 import requests
-import config
+import os
 
-BOT_TOKEN = config.BOT_TOKEN
-FORTNITE_API_TOKEN = config.FORTNITE_API_TOKEN
+BOT_TOKEN = os.environ['BOT_TOKEN']
+FORTNITE_API_TOKEN = os.environ['FORTNITE_API_TOKEN']
 COMMAND_PREFIX = '!'
 
 client = discord.Client()
