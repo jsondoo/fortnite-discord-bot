@@ -2,6 +2,8 @@
 
 Simple discord bot that retrieves fortnite user stats
 
+![](https://i.imgur.com/khZNKIG.png)
+
 ### Prerequisites
 
 This script requires these libraries: [discord.py](https://github.com/Rapptz/discord.py) and [requests](https://github.com/requests/requests)
