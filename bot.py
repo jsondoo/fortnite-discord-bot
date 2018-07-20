@@ -16,8 +16,8 @@ async def on_ready():
 @client.event
 async def on_message(message):
   if message.content.startswith(COMMAND_PREFIX + 'help'):
-    await client.send_message(message.channel, 'This bot is powered by the free Fortnite Tracker API which provides liftime stats for players on PC, Xbox, or PS4. Type ' + COMMAND_PREFIX + 
-      'stats <platform> <nickname>')
+    await client.send_message(message.channel, 'This bot is powered by the free Fortnite Tracker API which provides lifetime stats for players on PC, Xbox, or PS4. Type `' + COMMAND_PREFIX + 
+      'stats <platform> <nickname>` to retrieve stats.')
   elif message.content.startswith(COMMAND_PREFIX + 'ping'):
     await client.send_message(message.channel, 'pong')
 
@@ -26,6 +26,7 @@ async def on_message(message):
 
     if len(words) < 3:
       await client.send_message(message.channel, 'Usage: ' + COMMAND_PREFIX + 'stats <pc,xbl,psn> <nickname>')
+      return
 
     platform = words[1].lower()
 
@@ -37,6 +38,7 @@ async def on_message(message):
 
     if platform not in ('pc','xbl','psn'):
       await client.send_message(message.channel, 'Usage: ' + COMMAND_PREFIX + 'stats <pc,xbl,psn> <nickname>')
+      return
     else:
       res = fortnite_tracker_api(platform,words[2])
 
