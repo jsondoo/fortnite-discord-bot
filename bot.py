@@ -5,13 +5,13 @@ import os
 
 BOT_TOKEN = os.environ['BOT_TOKEN']
 FORTNITE_API_TOKEN = os.environ['FORTNITE_API_TOKEN']
-COMMAND_PREFIX = '?'
+COMMAND_PREFIX = '#'
 
 client = discord.Client()
 
 @client.event
 async def on_ready():
-  await client.change_presence(game=discord.Game(name='?'))
+  await client.change_presence(game=discord.Game(name='Type #stats to get started'))
 
 @client.event
 async def on_message(message):
@@ -20,13 +20,19 @@ async def on_message(message):
 
   if message.content.startswith(COMMAND_PREFIX + 'stats'):
     words = message.content.split(' ', 2)
+    platform = words[1].lower()
+
+    if platform == 'xbox':
+      platform = 'xbl'
+    elif platform == 'ps4':
+      platform = 'psn'
 
     if len(words) < 3:
       await client.send_message(message.channel, 'Usage: ' + COMMAND_PREFIX + 'stats <pc,xbl,psn> <nickname>')
-    elif words[1] not in ('pc','xbl','psn'):
+    elif platform not in ('pc','xbl','psn'):
       await client.send_message(message.channel, 'Usage: ' + COMMAND_PREFIX + 'stats <pc,xbl,psn> <nickname>')
     else:
-      res = fortnite_tracker_api(words[1],words[2])
+      res = fortnite_tracker_api(platform,words[2])
 
       if res:
         matches_played = res[0]['value']
@@ -44,7 +50,7 @@ async def on_message(message):
         embed.add_field(name="K/D", value=kd + '\n', inline=False)
         await client.send_message(message.channel, embed=embed)
       else:
-        await client.send_message(message.channel, 'Failed to get data')
+        await client.send_message(message.channel, 'Failed to get data. Double check the case and spelling of your nickname.')
 
 def fortnite_tracker_api(platform, nickname):
   URL = 'https://api.fortnitetracker.com/v1/profile/' + platform + '/' + nickname
