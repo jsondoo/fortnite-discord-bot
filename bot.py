@@ -11,11 +11,14 @@ client = discord.Client()
 
 @client.event
 async def on_ready():
-  await client.change_presence(game=discord.Game(name='Type #stats to get started'))
+  await client.change_presence(game=discord.Game(name='Type #help'))
 
 @client.event
 async def on_message(message):
-  if message.content.startswith(COMMAND_PREFIX + 'ping'):
+  if message.content.startswith(COMMAND_PREFIX + 'help'):
+    await client.send_message(message.channel, 'This bot is powered by the free Fortnite Tracker API which provides liftime stats for players on PC, Xbox, or PS4. Type ' + COMMAND_PREFIX + 
+      'stats <platform> <nickname>')
+  elif message.content.startswith(COMMAND_PREFIX + 'ping'):
     await client.send_message(message.channel, 'pong')
 
   if message.content.startswith(COMMAND_PREFIX + 'stats'):
